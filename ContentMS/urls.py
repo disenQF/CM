@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.core.paginator import Paginator
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 import xadmin as admin
 from content.models import Category, Book
+
+from utils import rank
 
 
 def toIndex(request):
@@ -43,11 +45,22 @@ def toIndex(request):
     page_num = int(request.GET.get('page', 1))
     pager = paginator.page(page_num)
 
+    # 查询周排行榜
+    rank_books = rank.get_rank_for_week(5)
+
     return render(request, 'index.html', locals())
+
+
+def read_book(request, book_id):
+    rank.add_rank_for_week(book_id)
+    return redirect('/')
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^read/(\d+)/', read_book),  # 默认主页的请求路径
     url(r'^/', toIndex),  # 默认主页的请求路径
     url(r'', toIndex),  # 默认主页的请求路径
+
 
 ]

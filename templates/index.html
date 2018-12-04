@@ -27,7 +27,7 @@
                                 <dd>{{ book.name }}</dd>
                                 <dd>作者：{{ book.author }}</dd>
                                 <dd>
-                                    <button class="btn btn-info">购买</button>
+                                    <a href="/read/{{ book.id }}/" class="btn btn-info">购买</a>
                                 </dd>
                             </dl>
                         </li>
@@ -56,8 +56,20 @@
 
         <div class="col-xs-4">
 
-            <div style="height: 300px;background-color:#1cf8e3;">
+            <div >
+                <div id="week_rank">
+                    <h5>周排行</h5>
+                    <ul>
+                        {% for book, score in rank_books %}
+                            <li>
+                                <span id="no{% if forloop.counter <= 3 %}{{ forloop.counter }}{% endif %}">{{ forloop.counter }}</span>
+                                <span class="book_name"><a href="/read/{{ book.id }}/">{{ book.name }}</a></span>
+                                <span class="rank_score text-right">{{ score }}</span>
+                            </li>
+                        {% endfor %}
 
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

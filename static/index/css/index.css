@@ -77,18 +77,68 @@ footer > div {
     clear: both;
 }
 
-#books img{
+#books img {
     display: inline-block;
     height: 140px;
     width: 120px;
 }
 
-#books dt{
+#books dt {
     overflow: hidden;
 }
 
-#books img:hover{
+#books img:hover {
     /*transform: scale3d(1.2, 1.2, 1.2);*/
     transform: rotate3d(1.0, 1.0, 1.0, 45deg);
     transition: transform linear 0.5s;
+}
+
+#week_rank {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    font-size: 1.5rem;
+}
+
+#week_rank ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0px;
+}
+
+#week_rank h5 {
+    text-align: center;
+    margin: 0px;
+    background-color: powderblue;
+    padding: 5px;
+}
+
+#week_rank li {
+    padding: 5px;
+    margin-left: 2px;
+}
+
+#week_rank li span:first-child {
+    display: inline-block;
+    background-color: darkgray;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    color: white;
+}
+
+#week_rank li > #no1 {
+    background-color: red;
+}
+
+#week_rank li >  #no2 {
+    background-color: orangered;
+}
+
+#week_rank li >  #no3 {
+    background-color: palevioletred;
+}
+
+#week_rank li span:last-child{
+    position: absolute;
+    right: 25px;
 }
