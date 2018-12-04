@@ -14,8 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+from django.shortcuts import render
+
 import xadmin as admin
+
+
+def toIndex(request):
+    return render(request, 'index.html')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^/', toIndex),  # 默认主页的请求路径
+    url(r'', toIndex),  # 默认主页的请求路径
+
 ]

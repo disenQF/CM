@@ -1,14 +1,16 @@
 import xadmin as admin
 from xadmin import views
 
-from content.models import Category, Book
+from content.models import Category, Book, Tag
+
+
 # Register your models here.
 
 
 class BaseSetting(object):
     # 主题修改
-    enable_themes = True
-    use_bootswatch = True
+    enable_themes = False
+    use_bootswatch = False
 
 
 admin.site.register(views.BaseAdminView, BaseSetting)
@@ -39,7 +41,7 @@ class GlobalSettings(object):
     }
 
 
-admin.site.register(views.CommAdminView,  GlobalSettings)
+admin.site.register(views.CommAdminView, GlobalSettings)
 
 
 class CategoryAdmin:
@@ -55,5 +57,19 @@ class CategoryAdmin:
     list_per_page = 20
 
 
+class BookAdmin:
+    # 后台列表显示列
+    list_display = ['name', 'summary', 'author', 'category', 'tags']
+    # 后台列表查询条件
+    search_fields = ['name', 'author']
+    list_per_page = 20
+
+
+class TagAdmin:
+    # 后台列表显示列
+    list_display = ['name', 'code']
+
+
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(Book)
+admin.site.register(Book, BookAdmin)
+admin.site.register(Tag, TagAdmin)
