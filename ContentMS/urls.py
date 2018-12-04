@@ -39,7 +39,7 @@ def toIndex(request):
     # 自定义分页 pages = count / pageSize.   offset = (page-1)*pageSize
     # sql :  select id,name from table limit offset, pageSize
 
-    paginator = Paginator(books, 6)
+    paginator = Paginator(books, 10)
 
     # 请求参数中的page,代表请求哪一页的数据
     page_num = int(request.GET.get('page', 1))

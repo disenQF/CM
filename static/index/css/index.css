@@ -69,7 +69,7 @@ footer > div {
     margin: 5px;
 }
 
-#books ul:after {
+#books:after {
     display: block;
     content: '';
     height: 0;
