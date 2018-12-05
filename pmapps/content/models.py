@@ -69,8 +69,7 @@ class Book(models.Model):
 
     # 多对多的关系, 自动创建第三方表
     tags = models.ManyToManyField(Tag,
-                                  verbose_name='标签',
-                                  null=True)
+                                  verbose_name='标签')
 
     category = models.ForeignKey(Category,
                                  on_delete=models.SET_NULL,

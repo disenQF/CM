@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 
@@ -58,9 +58,9 @@ def read_book(request, book_id):
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^read/(\d+)/', read_book),  # 默认主页的请求路径
+    url(r'^user/', include('user.urls')),
+    url(r'^book/', include('content.urls')),
     url(r'^/', toIndex),  # 默认主页的请求路径
     url(r'', toIndex),  # 默认主页的请求路径
-
 
 ]
