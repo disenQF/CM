@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block css %}
+    <link rel="stylesheet" href="/static/user/css/user.css">
+{% endblock %}
+{% block content %}
+    <div id="regist">
+        <h3>用户注册</h3>
+        <hr>
+        <form class="form form-horizontal"
+              method="post">
+            <div class="row">
+               UserName:  <input name="username">
+            </div>
+            <div class="row">
+                Image: <input type="file" name="photo">
+            </div>
+            <div>
+                <button class="btn btn-success"
+                        type="button"
+                        onclick="upload()">Regist</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block js %}
+
+    <script>
+        function upload() {
+            alert('Start Regist User!');
+            var request = new XMLHttpRequest();
+            request.open('post','/user/regist_ajax/',true);
+            request.onload = function (ev) {
+                if(request.status == 200 && request.readyState==4){
+                    alert(request.responseText);
+                }
+            }
+
+            formdata = new FormData(document.forms[1])
+
+            imgFile = formdata.get('photo');
+            console.log(imgFile);
+
+            request.send(formdata)
+
+        }
+    </script>
+{% endblock %}

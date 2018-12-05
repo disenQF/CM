@@ -87,3 +87,13 @@ def uploadImg(request):
 
     return JsonResponse({'path': 'user/imgs/%s' % file_name,
                          'code': 20})
+
+
+@csrf_exempt
+def regist_for_ajax(request):
+    if request.method == 'GET':
+        return render(request, 'user/regist2.html')
+    # POST请求
+    print(request.POST)
+    print(request.FILES)
+    return JsonResponse({'msg':'ok!'})
