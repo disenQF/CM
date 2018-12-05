@@ -142,3 +142,10 @@ footer > div {
     position: absolute;
     right: 25px;
 }
+
+#user_photo{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}

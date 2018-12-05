@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'xadmin',
     'crispy_forms',
     'content',
-    'user'
+    'user',
+    'djcelery',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,18 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/static/media/'  # http的请求路径
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')  # 文件目录
+
+###############
+# Celery Config
+import djcelery
+djcelery.setup_loader()
+
+BROKER_URL = 'redis://127.0.0.1:6379/3'  # 消息中间件的路径（管道）
+CELERY_TIMEZONE = 'Asia/Shanghai'
+
+CELERY_IMPORTS = ('celery_task.tasks',)  # 导入的任务tasks模块
+CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+
+# 定时任务
+###############
+

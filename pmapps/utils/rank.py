@@ -6,7 +6,7 @@ def add_rank_for_week(book_id):
     # 判断key是否存在
     existed = rd.exists('week_rank')
 
-    rd.zincrby('week_rank', 1, book_id)
+    rd.zincrby('week_rank', book_id)  # amount=1
     if not existed:
         rd.expire('week_rank', 604800)  # 一周的有效时间
 

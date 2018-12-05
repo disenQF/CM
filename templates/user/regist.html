@@ -79,7 +79,8 @@
                 <label class="col-xs-2 text-right">头像：</label>
                 <div class="col-xs-6">
                    <input type="hidden" name="photo" value="{{ form.photo.value }}">
-                    <img id="preImg" src="/static/user/imgs/default.png"
+                    <img id="preImg"
+                         src="/static/{% if form.photo.value %}{{ form.photo.value }}{% else %}user/imgs/default.png{% endif %}"
                          width="100" height="145"
                          onclick="ImgSelector.click()">
                 </div>
