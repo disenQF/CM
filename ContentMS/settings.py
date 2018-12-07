@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'content',
     'user',
     'djcelery',
+    'haystack',
+    'order',
 ]
 
 MIDDLEWARE = [
@@ -148,3 +150,18 @@ CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 # 定时任务
 ###############
 
+
+###############
+# haystack    #
+###############
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': 'http://127.0.0.1:9200/',
+        'INDEX_NAME': 'book_index',
+    },
+}
+
+# 增、删、改时自动更新索引
+HAYSTACK_SIGNAL_PROCCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+HAYSTACK_FUZZY_MIN_SIM = 1

@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import render
+from drf_haystack.viewsets import HaystackViewSet
 
 # Create your views here.
 from content.models import Book
@@ -36,4 +37,4 @@ def query_read_state(request, book_id):
 
     code, msg = qread.check_q_read_state(user_id, book_id)
 
-    return  JsonResponse({'code': code, 'msg': msg})
+    return JsonResponse({'code': code, 'msg': msg})

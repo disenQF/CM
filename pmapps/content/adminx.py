@@ -32,12 +32,14 @@ class GlobalSettings(object):
 
     # 设置app模块的标题
     apps_label_title = {
-        'content': '内容管理'
+        'content': '内容管理',
+        'order': '订单管理'
     }
 
     # 设置app模块的图标
     apps_icons = {
-        'content': 'glyphicon glyphicon-book'
+        'content': 'glyphicon glyphicon-book',
+        'order': 'glyphicon glyphicon-barcode'
     }
 
 
