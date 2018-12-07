@@ -1,4 +1,7 @@
-from django.db import models
+from datetime import datetime
+
+from django.db import models, connection
+
 from user.models import UserProfile
 
 
@@ -29,14 +32,39 @@ class Address(models.Model):
         verbose_name_plural = verbose_name
 
 
+class OrderNumAutoField(models.CharField):
+    def get_db_prep_value(self, value, connection, prepared=False):
+        today = datetime.today().strftime('%Y%m%d')  # 20181207
+        cursor = connection.cursor()
+
+        cursor.execute('select max(order_sn) from t_order')
+        max_order_sn = cursor.fetchone()[0]  # ('20181212000001',)  或 (None,)
+
+        cursor.close()
+
+        if max_order_sn:
+            max_order_date = max_order_sn[:8]  # yyyymmdd
+            if today == max_order_date:
+                sn = str(int(max_order_sn[8:])+1)
+                return today + sn.rjust(6, '0')
+
+        return today + '000001'  # 今天的第一单
+
+
+
+
 class Order(models.Model):
     user = models.ForeignKey(UserProfile,
                              on_delete=models.CASCADE,
                              verbose_name='用户')
     title = models.CharField(max_length=100,
                              verbose_name='标题')
-    order_sn = models.CharField(max_length=20,
-                                verbose_name='订单号')
+
+    # 自动生成： yyyymmdd000001
+    order_sn = OrderNumAutoField(max_length=20,
+                                 editable=False,
+                                 verbose_name='订单号')
+
     price = models.DecimalField(verbose_name='金额(元)',
                                 max_digits=10,
                                 decimal_places=2)
