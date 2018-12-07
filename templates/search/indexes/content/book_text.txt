@@ -1,3 +1,4 @@
+{{ object.id }}
 {{ object.name }}
 {{ object.author }}
-{{ object.id }}
+{{ object.summary }}
