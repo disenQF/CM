@@ -23,7 +23,7 @@ kombu==3.0.37
 odfpy==1.4.0
 openpyxl==2.5.12
 pefile==2018.8.8
-Pillow==5.3.0
+Pillow==9.0.0
 python-dateutil==2.7.5
 python-ptrace==0.9.3
 pytz==2018.7
